@@ -1,9 +1,9 @@
 import cv2
 import numpy as np
-from DatasetLoader import imgL1
+from DatasetLoader import *
 def computedisparity(img1,img2,method,blk=11):
-    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+    # img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+    # img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     if(method=='semi'):
         matcher = cv2.StereoSGBM_create(numDisparities=96,
                                             minDisparity=0,
@@ -33,8 +33,10 @@ def computedepth(dmap,kleft,tleft,tright):
     depth=focal*baseline/dmap
     return depth
 
-def calculateDepthDisp(img1,img2,method,kleft,tleft,tright,blk=11):
+def calculateDepthDisp(img1,img2,method,PLeft,PRight,blk=11):
     dmap=computedisparity(img1,img2,method,blk)
+    kleft,rleft,tleft=decomposePmat(PLeft)
+    kleft,rleft,tleft=decomposePmat(PRight)
     depthinfo=computedepth(dmap,kleft,tleft,tright)
     return depthinfo   
 
