@@ -23,9 +23,9 @@ def dataset_loader(number):
     P1 = np.array(calib.loc['P1:']).reshape((3, 4))
     P2 = np.array(calib.loc['P2:']).reshape((3, 4))
     P3 = np.array(calib.loc['P3:']).reshape((3, 4))
-    images_left = [cv2.imread(seq_dir + 'image_0/' + name_left, 0) for name_left in left_imagesfie]
-    images_right = [cv2.imread(seq_dir + 'image_1/' + name_right, 0) for name_right in right_imagesfie]
-
+    images_left = [cv2.imread(seq_dir + 'image_0/' + name_left, 0) for name_left in sorted(left_imagesfie)]
+    images_right = [cv2.imread(seq_dir + 'image_1/' + name_right, 0) for name_right in sorted(right_imagesfie)]
+    
     # left_first = next(images_left)
     # first_right = next(images_right)
     # second_image_left = next(images_left)
