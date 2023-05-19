@@ -33,10 +33,10 @@ def computedepth(dmap,kleft,tleft,tright):
     depth=focal*baseline/dmap
     return depth
 
-def calculateDepthDisp(img1,img2,method,PLeft,PRight,blk=11):
+def calculateDepthDisp(img1,img2,method,Pleft,Pright,blk=11):
     dmap=computedisparity(img1,img2,method,blk)
-    kleft,rleft,tleft=decomposePmat(PLeft)
-    kleft,rleft,tleft=decomposePmat(PRight)
+    kleft,rleft,tleft=decomposePmat(Pleft)
+    kright,right,tright=decomposePmat(Pright)
     depthinfo=computedepth(dmap,kleft,tleft,tright)
     return depthinfo   
 

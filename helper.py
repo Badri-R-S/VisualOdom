@@ -106,62 +106,28 @@ def GetRotTrans(pts, rot_mat, trans_mat):
 def checkcheiral(pts, R, T):
     n = 0
     for i in range(pts.shape[1]):
-        # Homogeneous coordinates of the 3D point
         X_hom = np.hstack((pts[:,i], 1))
-
-        # Convert homogeneous coordinates to 3D coordinates
         X = X_hom[:3] / X_hom[3]
 
-        # Check if R3(X-T)>0
         if R[2,:].dot(X - T) > 0:
             n += 1
 
     return n 
 
 
-def LOF(p1, p2, K1, K2, threshold=0.02, num_iter=5000):
-    # Convert the input points to homogeneous coordinates
+def LOF(p1, p2, K1, K2, threshold=1.0):
     p1H = np.hstack((p1, np.ones((p1.shape[0], 1))))
     p2H = np.hstack((p2, np.ones((p2.shape[0], 1))))
-
-    # Initialize the best fundamental matrix and inliers
-    best_F = None
-    best_inliers = []
     lof = LocalOutlierFactor(n_neighbors=20, contamination='auto')
-    lof.fit(p1)
+    lof.fit(p2)
     outlier_scores = -lof.negative_outlier_factor_
-
     inliers = outlier_scores > threshold
-    if np.sum(inliers) > np.sum(best_inliers):
-        best_inliers = inliers
+    inlier_p1 = p1[inliers]
+    inlier_p2 = p2[inliers]
+    F = fundamental(inlier_p1, inlier_p2)
+    E = essential(K1, K2, F)
+    final_R, final_t = get_camera_pose(E)
+    pts = getPoints(K1, K2, inlier_p1, inlier_p2, final_R, final_t)
+    R, t, final_pts = GetRotTrans(pts, final_R, final_t)
 
-    # Get the inlier points
-    inlier_p1 = p1[np.where(best_inliers)[0]]
-    inlier_p2 = p2[np.where(best_inliers)[0]]
-
-    # Perform LMedS using the inlier points
-    best_R = None
-    best_t = None
-    best_error = float('inf')
-
-    for i in range(num_iter):
-        # Select a random sample of 4 points to estimate pose
-        sample_size = min(4, inlier_p1.shape[0])
-        rand_idx = random.sample(range(inlier_p1.shape[0]), sample_size)
-
-        # Estimate camera pose using the selected points
-        E = essential(K1, K2, best_F)
-        final_R, final_t = get_camera_pose(E)
-        pts = getPoints(K1, K2, inlier_p1[rand_idx], inlier_p2[rand_idx], final_R, final_t)
-        R, t, final_pts = GetRotTrans(pts, final_R, final_t)
-
-        # Check chirality
-        num_positive_Z = checkcheiral(final_pts.T, R, t)
-
-        # Update the best camera pose if the current one has a lower chirality error
-        if num_positive_Z < best_error:
-            best_R = R
-            best_t = t
-            best_error = num_positive_Z
-
-    return best_R, best_t, inlier_p1, inlier_p2
+    return R, t, inlier_p1, inlier_p2
