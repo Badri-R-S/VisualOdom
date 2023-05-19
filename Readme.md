@@ -53,10 +53,10 @@ Deployed three approaches
 ![output-2](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/11b09244-66d2-43d1-b961-da793ab6c6a0)
 
 # CONTRIBUTORS 
-Badrinaryan - [@Irdab2000]
-https://github.com/Irdab200
-Smit Dumore - [@smitdumore]
-https://github.com/smitdumore
+Badrinaryan - [@[Irdab2000](https://github.com/Irdab200
+)]
+Smit Dumore - [[@smitdumore](https://github.com/smitdumore)]
+
 Achuthan- [@Achuthankrishna]
 # WARNING
 Please be patient - as it takes atleast 20 mins long for method 2 and 3 - Method 1 results converge in average 15 mins. This is due to dataset size.
