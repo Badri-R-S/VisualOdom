@@ -22,7 +22,7 @@ Using that, we computed depth, which gave us a better understanding of the depth
 ![Dpth](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/0d4044f2-c399-4f31-9ab8-9f26f9c249c1)
 # Feature Extraction
 We approached with two methods. First one was using ORB , a quick method to get matci=hing keypoints and matches. Used a lowe's distance of 0.8 to filter best matches, and we were able to estimate around deccent amount of matches for the given dataset sequence.
-![ORBANFAST](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/066dcb2d-2e46-499a-8fd7-2eddec305de1)
+![FilteredORB](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/f267632d-12ab-434c-a69e-b707133e6c19)
 
 Second feature extraction, we combined FAST + SIFT , that provided more robust results than ORB and the computation time was slightly higher than ORB.
 ![ORBAST](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/853c5b94-4144-41ec-918f-d39f71ca65df)
