@@ -36,7 +36,21 @@ Second feature extraction, we combined FAST + SIFT , that provided more robust r
 
 ![ORBAST](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/853c5b94-4144-41ec-918f-d39f71ca65df)
 
+# Motion Estimation
+Deployed three approaches 
+- Approach 1 : Point-n-Perspective method and depth information to get project 2D image points as 3D homogenous points and estimate Translation Vector and Rotation matrix using SolvePnP. This is the most efficient method 
 
+![FAST+PNP](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/8d3ce938-3bba-45bb-9d20-92ed5a5a4a76)
+
+
+
+- Approach 2 : Calculate Camera Pose using Essential Matrix and recover pose using LMedS - Unstable
+
+![FAST-Method2](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/7b638c25-741a-425b-b32e-6242fb57cdd0)
+
+- Approach 3 : Implement Local Outlier Factor for 20 neighbors and calculate essential matrix and get rotation and translation matrices. - Highly Unstable 
+
+![output-2](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/11b09244-66d2-43d1-b961-da793ab6c6a0)
 
 # WARNING
 Please be patient - as it takes atleast 20 mins long for method 2 and 3 - Method 1 results converge in average 15 mins. This is due to dataset size.
