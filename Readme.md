@@ -1,4 +1,4 @@
-# Dependencied necessary to run the code:
+# Dependencies necessary to run the code:
 	- scikit learn
 	- pandas
 	- numpy
@@ -14,7 +14,7 @@
 		- give "2" as a second parameter to run camera pose estimation using Essential matrix
 		- give "3" as the second parameter to run camera pose estimation using Essential matrix + Local Outlier Factor (LOF).
 	-Give dist_threshold value 0.5+ for FAST.
-# Method3 - Results will not converge and will have high error due to its instability - Method 1 is the most stable method
+	- Method3 - Results will not converge and will have high error due to its instability - Method 1 is the most stable method
 
 
 
