@@ -1,9 +1,10 @@
 # Dependencies necessary to run the code:
-	- scikit learn
-	- pandas
-	- numpy
-	- cv2
-
+```
+pip3 install scikit-learn
+pip3 install pandas
+pip3 install numpy
+import cv2
+```
 # Instructons to run the code: 
 	- git clone the files from the repository.
 	- navigate to the dataset folder.
