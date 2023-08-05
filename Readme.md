@@ -54,7 +54,7 @@ Deployed three approaches
 ![output-2](https://github.com/Achuthankrishna/VisualOdom/assets/74654704/11b09244-66d2-43d1-b961-da793ab6c6a0)
 
 # CONTRIBUTORS 
-Badrinarayanan RS - [@[Irdab2000](https://github.com/Irdab200
+Badrinarayanan RS - [@[Badri-R-S](https://github.com/Badri-R-S
 )]
 
 Smit Dumore - [[@smitdumore](https://github.com/smitdumore)]
